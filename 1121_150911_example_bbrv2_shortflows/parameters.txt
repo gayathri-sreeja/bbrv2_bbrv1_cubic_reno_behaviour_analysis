@@ -1,0 +1,16 @@
+Test Name: example_bbrv2_shortflows
+Date: Fri Nov 21 15:09:11 2025
+Kernel: b'6.17.8-x64v3-xanmod1 #0~20251113.gdd2b142 SMP PREEMPT_DYNAMIC Thu Nov 13 23:32:03 UTC GNU/Linux'
+Git Commit: unknown
+Initial Bandwidth: 10Mbit
+Burst Buffer: 1600b
+Buffer Latency: 100ms
+Initial Link RTT: 0ms
+Initial Link Loss: 0%
+Commands: 
+link, bw, 10Mbit, 0.0
+host, reno, 40ms, 10.0, 20.0
+host, cubic, 40ms, 12.0, 22.0
+host, bbr, 40ms, 14.0, 24.0
+host, reno, 40ms, 16.0, 26.0
+host, cubic, 40ms, 18.0, 28.0
