@@ -95,30 +95,30 @@ def main():
 
 
 def parse_pcap(path, delta_t):
-    # 🔍 Find correct .pcap files (recursive search, covers compressed and uncompressed)
+    #  Find correct .pcap files (recursive search, covers compressed and uncompressed)
     pcap1_list = glob.glob(os.path.join(path, '**/s1*.pcap*'), recursive=True)
     pcap2_list = glob.glob(os.path.join(path, '**/s3*.pcap*'), recursive=True)
 
-    # 🧩 Handle missing pcap files safely
+    #  Handle missing pcap files safely
     if not pcap1_list or not pcap2_list:
-        print("\n⚠️ Could not find required pcap files in:", path)
+        print("\nCould not find required pcap files in:", path)
         print("Found files:", os.listdir(path))
         print("Expected files like s1.pcap / s1.pcap.gz and s3.pcap / s3.pcap.gz")
         return None
 
-    # ✅ Use the first match for each
+    #  Use the first match for each
     pcap1 = pcap1_list[0]
     pcap2 = pcap2_list[0]
 
-    print(f"✅ Found pcap1: {pcap1}")
-    print(f"✅ Found pcap2: {pcap2}")
+    print(f" Found pcap1: {pcap1}")
+    print(f"Found pcap2: {pcap2}")
 
-    # 🧮 Count total packets safely
+    #  Count total packets safely
     try:
         total_packets = len(list(dpkt.pcap.Reader(open_compressed_file(pcap1)))) + \
                         len(list(dpkt.pcap.Reader(open_compressed_file(pcap2))))
     except Exception as e:
-        print(f"❌ Error reading pcap files: {e}")
+        print(f" Error reading pcap files: {e}")
         return None
 
     print('  Found {} frames.'.format(colorize(total_packets, 'green')))
@@ -391,7 +391,7 @@ def parse_pcap(path, delta_t):
             throughput_data_size[connection_index] += ip.len * 8
 
     f.close()
-    print('  100.00% ✅ Done processing PCAP files')
+    print('  100.00%  Done processing PCAP files')
 
     # =================================
     # Compute fairness & BBR metrics
